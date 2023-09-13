@@ -1,11 +1,18 @@
+import {useState} from "react";
 import Like from "../../../images/like.svg";
 import UnLike from "../../../images/unlike.svg";
+import ReplyForm from "./ReplyForm";
 
 // eslint-disable-next-line react/prop-types
-const Comment = ({ id,name, text, likes, image, replies, onDeleteComment, isNew }) => {
+const Comment = ({ id,name, text, likes, image, replies, onDeleteComment, isNew, onAddReply, onDeleteReply }) => {
+  const [showReplyForm, setShowReplyForm] = useState(false);
 
   const handleDeleteComment = () => {
     onDeleteComment(id);
+  };
+
+  const handleToggleReplyForm = () => {
+    setShowReplyForm(!showReplyForm);
   };
 
   // Check if the comment is new
@@ -25,25 +32,38 @@ const Comment = ({ id,name, text, likes, image, replies, onDeleteComment, isNew 
             <img src={likes > 0 ? Like : UnLike} />
             <span className="ml-2  text-grayText">{likes}</span>
             <span className="ml-4 font-extrabold text-grayText">·</span>
-            <button className="ml-5 text-blue">Reply</button>
+            <button className="ml-5 text-blue" onClick={handleToggleReplyForm}>Reply</button>
             {/* showing the delete button for newly created comment only!  */}
             {isNewComment && <button className="ml-5 text-red" onClick={handleDeleteComment}>Delete</button>}
+            {/* { <button className="ml-5 text-red" onClick={onDeleteReply}>Delete</button>} */}
           </div>
         </div>
       </div>
       {/* Render replies */}
       <div className="ml-10">
         {/* eslint-disable-next-line react/prop-types */}
-        {replies?.map((reply) => (
+        {  replies?.map((reply) => (
+          <div   key={reply.id} >
           <Comment
-            key={reply.id}
+          
             name={reply.name}
             text={reply.text}
             likes={reply.likes}
             image={reply.image}
+            isNew={reply.isNew}
+            id = {reply.id}
           />
+             <button className="ml-5 text-red" onClick={() => onDeleteReply(id, reply.id)}>
+              abc
+            </button>
+           </div>
         ))}
       </div>
+      
+      {showReplyForm && (
+        <ReplyForm onAddReply={(replyText) => onAddReply(id, replyText)} />
+        
+      )}
     </div>
   );
 };

@@ -3,6 +3,7 @@ import "./App.css";
 import Comment from "../src/components/Comment";
 import { dummyComments } from "./DummyComment";
 import AddCommentForm from "./components/AddCommentForm";
+import user1 from "../../images/user1.png";
 
 function App() {
   const [commentsData, setCommentsData] = React.useState(dummyComments);
@@ -23,6 +24,46 @@ function App() {
     setCommentsData(updatedComments);
   };
 
+   // Function to add a reply to a comment
+   const addReply = (commentId, replyText) => {
+    const updatedComments = commentsData.map((comment) => {
+      if (comment.id === commentId) {
+        const newReply = {
+          id: Date.now(),
+          text: replyText,
+          likes: 0,
+          image: user1,
+          replies: [],
+          isNew:true
+        };
+        return {
+          ...comment,
+          replies: [...comment.replies, newReply],
+        };
+      }
+      return comment;
+    });
+
+    setCommentsData(updatedComments);
+  };
+
+    // Function to delete a reply by comment and reply ID
+    const deleteReply = (commentId, replyId) => {
+      const updatedComments = commentsData.map((comment) => {
+        if (comment.id === commentId) {
+          return {
+            ...comment,
+            replies: comment.replies.filter((reply) => reply.id !== replyId),
+          };
+        }
+        return comment;
+      });
+  
+      setCommentsData(updatedComments);
+    };
+
+
+
   return (
     // h-screen
     <div className="bg-bodyBackground   flex justify-center  ">
@@ -38,11 +79,13 @@ function App() {
             text={comment.text}
             likes={comment.likes}
             image={comment.image}
-            replies={comment.replies || []}
+            replies={comment.replies}
             id={comment.id}
             isNew={comment.isNew}
             onAddComment={handleAddComment}
             onDeleteComment={deleteComment}
+            onAddReply = {addReply}
+            onDeleteReply={deleteReply}
           />
         ))}
         <AddCommentForm onAddComment={handleAddComment} />
