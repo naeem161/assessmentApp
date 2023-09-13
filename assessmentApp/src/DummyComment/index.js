@@ -26,7 +26,6 @@ export const dummyComments = [
           text: "Sure, I would love to meet up!",
           likes: 0,
           image: user4,
-          replies: [],
         },
         {
           id: 5,
@@ -34,7 +33,6 @@ export const dummyComments = [
           text: "Count me in too!",
           likes: 0,
           image: user4,
-          replies: [],
         },
       ],
     },

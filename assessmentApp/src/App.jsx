@@ -24,8 +24,8 @@ function App() {
     setCommentsData(updatedComments);
   };
 
-   // Function to add a reply to a comment
-   const addReply = (commentId, replyText) => {
+  // Function to add a reply to a comment
+  const addReply = (commentId, replyText) => {
     const updatedComments = commentsData.map((comment) => {
       if (comment.id === commentId) {
         const newReply = {
@@ -33,8 +33,6 @@ function App() {
           text: replyText,
           likes: 0,
           image: user1,
-          replies: [],
-          isNew:true
         };
         return {
           ...comment,
@@ -47,22 +45,20 @@ function App() {
     setCommentsData(updatedComments);
   };
 
-    // Function to delete a reply by comment and reply ID
-    const deleteReply = (commentId, replyId) => {
-      const updatedComments = commentsData.map((comment) => {
-        if (comment.id === commentId) {
-          return {
-            ...comment,
-            replies: comment.replies.filter((reply) => reply.id !== replyId),
-          };
-        }
-        return comment;
-      });
-  
-      setCommentsData(updatedComments);
-    };
+  // Function to delete a reply by comment and reply ID
+  const deleteReply = (commentId, replyId) => {
+    const updatedComments = commentsData.map((comment) => {
+      if (comment.id === commentId) {
+        return {
+          ...comment,
+          replies: comment.replies.filter((reply) => reply.id !== replyId),
+        };
+      }
+      return comment;
+    });
 
-
+    setCommentsData(updatedComments);
+  };
 
   return (
     // h-screen
@@ -84,7 +80,7 @@ function App() {
             isNew={comment.isNew}
             onAddComment={handleAddComment}
             onDeleteComment={deleteComment}
-            onAddReply = {addReply}
+            onAddReply={addReply}
             onDeleteReply={deleteReply}
           />
         ))}
