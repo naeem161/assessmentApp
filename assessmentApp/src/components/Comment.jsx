@@ -2,7 +2,16 @@ import Like from "../../../images/like.svg";
 import UnLike from "../../../images/unlike.svg";
 
 // eslint-disable-next-line react/prop-types
-const Comment = ({ name, text, likes, image, replies }) => {
+const Comment = ({ id,name, text, likes, image, replies, onDeleteComment, isNew }) => {
+
+  const handleDeleteComment = () => {
+    onDeleteComment(id);
+  };
+
+  // Check if the comment is new
+  const isNewComment = isNew;
+
+
   return (
     <div className="bg-white p-2 mb-3 ">
       <div className="flex items-center">
@@ -17,6 +26,8 @@ const Comment = ({ name, text, likes, image, replies }) => {
             <span className="ml-2  text-grayText">{likes}</span>
             <span className="ml-4 font-extrabold text-grayText">·</span>
             <button className="ml-5 text-blue">Reply</button>
+            {/* showing the delete button for newly created comment only!  */}
+            {isNewComment && <button className="ml-5 text-red" onClick={handleDeleteComment}>Delete</button>}
           </div>
         </div>
       </div>

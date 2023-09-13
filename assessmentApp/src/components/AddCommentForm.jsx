@@ -1,25 +1,26 @@
 import { useState } from "react";
 import Send from "../../../images/Send.svg";
-import { dummyComments } from '../DummyComment';
+import { dummyComments } from "../DummyComment";
 import user1 from "../../../images/user1.png";
 
 // eslint-disable-next-line react/prop-types
-const AddCommentForm = ({ parentId, onAddComment }) => {
+const AddCommentForm = ({ onAddComment }) => {
   const [commentText, setCommentText] = useState("");
 
   const handleCommentSubmit = () => {
     // Don't add empty comments
     if (commentText.trim() === "") {
-      return; 
+      return;
     }
 
     const newComment = {
-      id : dummyComments.length + 1,
-      image : user1,
-      likes : 0,
-      name : "Guest",
+      id: dummyComments.length + 1,
+      image: user1,
+      likes: 0,
+      name: "Guest",
       text: commentText,
-      parentId: parentId,
+      // adding isNew, so i can show delete option only on newly created comment
+      isNew: true,
     };
 
     onAddComment(newComment);
@@ -41,7 +42,7 @@ const AddCommentForm = ({ parentId, onAddComment }) => {
           className="absolute inset-y-0 right-0 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-r-lg flex items-center justify-center"
         >
           {/* send svg img  */}
-         <img src={Send}/>
+          <img src={Send} />
         </button>
       </div>
     </div>

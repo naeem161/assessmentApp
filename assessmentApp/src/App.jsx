@@ -1,15 +1,10 @@
-import React from 'react'
+import React from "react";
 import "./App.css";
 import Comment from "../src/components/Comment";
-import { dummyComments } from './DummyComment';
-import AddCommentForm from './components/AddCommentForm';
-
-
-
+import { dummyComments } from "./DummyComment";
+import AddCommentForm from "./components/AddCommentForm";
 
 function App() {
-
-
   const [commentsData, setCommentsData] = React.useState(dummyComments);
 
   const handleAddComment = (newComment) => {
@@ -20,7 +15,13 @@ function App() {
     setCommentsData(updatedCommentsData);
   };
 
-  console.log(commentsData);
+  // Function to delete a comment by ID
+  const deleteComment = (commentId) => {
+    const updatedComments = commentsData.filter(
+      (comment) => comment.id !== commentId
+    );
+    setCommentsData(updatedComments);
+  };
 
   return (
     // h-screen
@@ -38,11 +39,13 @@ function App() {
             likes={comment.likes}
             image={comment.image}
             replies={comment.replies || []}
+            id={comment.id}
+            isNew={comment.isNew}
             onAddComment={handleAddComment}
-            parentId= {comment.id}
+            onDeleteComment={deleteComment}
           />
         ))}
-      <AddCommentForm onAddComment={handleAddComment} />
+        <AddCommentForm onAddComment={handleAddComment} />
       </div>
     </div>
   );
