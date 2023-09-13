@@ -3,7 +3,7 @@ import "./App.css";
 import Comment from "../src/components/Comment";
 import { dummyComments } from "./DummyComment";
 import AddCommentForm from "./components/AddCommentForm";
-import user1 from "../../images/user1.png";
+import user4 from "../../images/user4.png";
 
 function App() {
   const [commentsData, setCommentsData] = React.useState(dummyComments);
@@ -32,7 +32,7 @@ function App() {
           id: Date.now(),
           text: replyText,
           likes: 0,
-          image: user1,
+          image: user4,
         };
         return {
           ...comment,

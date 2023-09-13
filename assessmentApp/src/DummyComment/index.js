@@ -21,22 +21,7 @@ export const dummyComments = [
       likes: 0,
       image: user2,
       replies: [
-        {
-          id: 4,
-          name: "John",
-          text: "Sure, I would love to meet up!",
-          likes: 0,
-          image: user4,
-          replies: [],
-        },
-        {
-          id: 5,
-          name: "John",
-          text: "Count me in too!",
-          likes: 0,
-          image: user4,
-          replies: [],
-        },
+      
       ],
     },
     {
@@ -47,5 +32,4 @@ export const dummyComments = [
       image: user3,
       replies:[]
     },
-    // Add more comment objects as needed
   ];

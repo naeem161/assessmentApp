@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Send from "../../../images/Send.svg";
 import { dummyComments } from "../DummyComment";
-import user1 from "../../../images/user1.png";
+import user4 from "../../../images/user4.png";
 
 // eslint-disable-next-line react/prop-types
 const AddCommentForm = ({ onAddComment }) => {
@@ -15,7 +15,7 @@ const AddCommentForm = ({ onAddComment }) => {
 
     const newComment = {
       id: dummyComments.length + 1,
-      image: user1,
+      image: user4,
       likes: 0,
       name: "Guest",
       text: commentText,
