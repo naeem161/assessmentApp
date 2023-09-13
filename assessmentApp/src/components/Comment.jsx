@@ -17,7 +17,7 @@ const Comment = ({
   onDeleteReply,
 }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
-  const [isLiked, setIsLiked] = useState(false); // Track like/unlike state
+  const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(likes);
 
   const handleDeleteComment = () => {
@@ -32,7 +32,6 @@ const Comment = ({
   const handleLikeComment = () => {
     // Toggle the isLiked state
     setIsLiked(!isLiked);
-
     // Update the like count based on the current state
     setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
   };
@@ -48,7 +47,7 @@ const Comment = ({
           <h3 className="text-black flex-grow mt-2 ">{name}</h3>
           <p className="text-grayText">{text}</p>
           <div className="flex mt-3 mb-2">
-            <img src={likes == 0 ? UnLike : Like} onClick={handleLikeComment} />
+            <img src={likeCount != 0  ? Like : UnLike} onClick={handleLikeComment} />
             <span className="ml-2  text-grayText">{likeCount}</span>
             <span className="ml-4 font-extrabold text-grayText">·</span>
             {!isNewComment && (

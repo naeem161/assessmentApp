@@ -12,6 +12,7 @@ export const dummyComments = [
       text: "I was very glad to have you after such a long time. Can you plan a meetup? Maybe this weekend?",
       likes: 1,
       image: user1,
+      replies:[]
     },
     {
       id: 2,
@@ -26,6 +27,7 @@ export const dummyComments = [
           text: "Sure, I would love to meet up!",
           likes: 0,
           image: user4,
+          replies: [],
         },
         {
           id: 5,
@@ -33,6 +35,7 @@ export const dummyComments = [
           text: "Count me in too!",
           likes: 0,
           image: user4,
+          replies: [],
         },
       ],
     },
@@ -42,6 +45,7 @@ export const dummyComments = [
       text: "Hey bud, welcome back to home. It's so long to see you back again. Would love to hear the travelling stories of yours. Your or my place?",
       likes: 1,
       image: user3,
+      replies:[]
     },
     // Add more comment objects as needed
   ];
